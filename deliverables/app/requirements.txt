@@ -1,0 +1,9 @@
+mltu
+tf2onnx
+onnx
+autocorrect
+ultralytics
+python-multipart
+fastapi
+uvicorn[standard]
+ipykernel

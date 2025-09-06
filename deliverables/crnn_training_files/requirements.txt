@@ -1,0 +1,7 @@
+tensorflow>=2.8
+keras>=2.8
+mltu>=1.0.17
+kagglehub>=0.1.7
+tqdm
+onnx
+tf2onnx

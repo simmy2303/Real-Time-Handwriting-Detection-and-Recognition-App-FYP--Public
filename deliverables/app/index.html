@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snap 2 Speech</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="high-contrast">
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-camera"></i> Snap 2 Speech</h1>
+            <p class="subtitle">Double-tap to open the camera, triple-tap to repeat instructions</p>
+        </header>
+
+        <main class="main-content">
+            <div id="loading" class="loading-indicator">
+                <div class="loading-spinner"></div>
+                <span>Processing image...</span>
+            </div>
+
+            <!-- Hidden file input used by both camera/gallery -->
+            <input type="file" id="upload" accept="image/*" style="display:none" />
+
+            <div class="upload-section">
+                <button id="camera-btn" class="btn btn-primary">
+                    <i class="fas fa-camera"></i>
+                    <span>Take Photo</span>
+                </button>
+                <button id="gallery-btn" class="btn btn-secondary">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload Image</span>
+                </button>
+            </div>
+
+            <div id="container" class="content-container">
+                <div class="image-section">
+                    <img id="output" class="preview-image"/>
+                </div>
+                
+                <div class="text-section">
+                    <div id="text-output" class="text-output">
+                        <div class="placeholder-text">
+                            <i class="fas fa-text-width"></i>
+                            Recognized text will appear here...
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <button id="copy-btn" class="btn-control" title="Copy text">
+                                <i class="fas fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                            <button id="save-btn" class="btn-control" title="Save text">
+                                <i class="fas fa-save"></i>
+                                <span>Save</span>
+                            </button>
+                            <button onclick="speakText()" class="btn-control" title="Read aloud">
+                                <i class="fas fa-play"></i>
+                                <span>Read</span>
+                            </button>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="speed-control">
+                                <label for="rate">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    Speed:
+                                </label>
+                                <select id="rate">
+                                    <option value="0.5">Slow</option>
+                                    <option value="1" selected>Normal</option>
+                                    <option value="1.5">Fast</option>
+                                    <option value="2">Very Fast</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <button onclick="pauseSpeech()" class="btn-control" title="Pause">
+                                <i class="fas fa-pause"></i>
+                                <span>Pause</span>
+                            </button>
+                            <button onclick="resumeSpeech()" class="btn-control" title="Resume">
+                                <i class="fas fa-play"></i>
+                                <span>Resume</span>
+                            </button>
+                            <button onclick="stopSpeech()" class="btn-control" title="Stop">
+                                <i class="fas fa-stop"></i>
+                                <span>Stop</span>
+                            </button>
+                        </div>
+
+                        <div class="control-group">
+                            <button onclick="clearAll()" class="btn-control btn-warning" title="Redo">
+                                <i class="fas fa-redo"></i>
+                                <span>Redo</span>
+                            </button>
+                            <button id="download-btn" class="btn-control btn-success" hidden title="Download">
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </button>
+                            <button onclick="toggleHighContrast()" class="btn-control btn-accent" title="Toggle contrast">
+                                <i class="fas fa-adjust"></i>
+                                <span>Contrast</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-bar">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Ready for text recognition</span>
+                </div>
+                <div class="supported-formats">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Supports: JPG, PNG, WEBP</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
